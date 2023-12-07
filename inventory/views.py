@@ -18,7 +18,6 @@ def api_inventory_list(request):
     serializer = InventoryItemSerializer(items, many=True)
     return Response(serializer.data)
 
-
 def create_inventory_item(request):
     if request.method == 'POST':
         form = InventoryItemForm(request.POST)
@@ -29,3 +28,11 @@ def create_inventory_item(request):
         form = InventoryItemForm()
 
     return render(request, 'inventory/create_inventory_item.html', {'form': form})
+
+@api_view(['POST'])
+def api_create_inventory_item(request):
+    serializer = InventoryItemSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)  # 201 Created
+    return Response(serializer.errors, status=400) 
