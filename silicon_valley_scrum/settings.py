@@ -128,9 +128,11 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Add your React frontend URL here
+    "http://localhost:5173",
     # Add more allowed origins if needed
 ]
 
 # Allow credentials (cookies, authorization headers, etc.)
 CORS_ALLOW_CREDENTIALS = True
+
+APPEND_SLASH = False
